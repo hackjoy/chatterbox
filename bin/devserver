@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+./node_modules/node-dev/bin/node-dev app.js
+
+# make sure file can be executed
+# $chmod +x bin/devserver
