@@ -1,19 +1,16 @@
-
-/**
- * Module dependencies.
- */
+// ** MODULE DEPENDENCIES **  https://npmjs.org/doc/install.html
 
 require('coffee-script');
 
 var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 
 var app = express();
 
-// all environments
+// ** CONFIG **
+
+// All ENV's
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -24,14 +21,24 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
-// development only
+// Dev ENV
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-app.get('/users', user.list);
+// ** HTTP ROUTING **
 
+// File paths variables
+var routes = require('./routes');
+var static_pages = require('./routes/static_pages');
+
+// App routes defined and passed to route controllers
+app.get('/', routes.index);
+app.post('/', routes.login);
+
+app.get('/about', static_pages.about);
+
+// Start the server
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
