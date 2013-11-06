@@ -33,7 +33,7 @@ var routes = require('./routes');
 var chat = require('./routes/chat');
 var static_pages = require('./routes/static_pages');
 
-// App routes defined here and passed to route controllers
+// App routes defined here and passed to route "controllers" in the routes file.
 app.get('/', routes.index);
 
 app.get('/chat', chat.index);
