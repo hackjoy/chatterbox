@@ -10,7 +10,7 @@ var app = express();
 
 // ** CONFIG **
 
-// All ENV's
+// For all ENV's
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -21,20 +21,23 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Dev ENV
+// For dev ENV
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
 // ** HTTP ROUTING **
 
-// File paths variables
+// File paths variables used for easy referencing
 var routes = require('./routes');
+var chat = require('./routes/chat');
 var static_pages = require('./routes/static_pages');
 
-// App routes defined and passed to route controllers
+// App routes defined here and passed to route controllers
 app.get('/', routes.index);
-app.post('/', routes.login);
+
+app.get('/chat', chat.index);
+app.post('/chat', message.create);
 
 app.get('/about', static_pages.about);
 

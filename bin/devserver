@@ -2,5 +2,5 @@
 
 ./node_modules/node-dev/bin/node-dev app.js
 
-# make sure file can be executed
-# $chmod +x bin/devserver
+# This script automatically reloads code changes without having to restart the server.
+# Make sure file can be executed by running : $ chmod +x bin/devserver

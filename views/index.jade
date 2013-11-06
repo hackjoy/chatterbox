@@ -3,14 +3,4 @@ extends layout
 block content
   h1= title
 
-  #message
-  form(action='/', method='post')
-    | Message
-    label
-      input(type='textarea', name='message')
-    input(type='submit', name='submit')
-  br
-  br
-  - for m in messages
-    div= m["date"] + " :: " + m["message"]
-
+  a(href="/chat", title="Chat") Visit live chat now!

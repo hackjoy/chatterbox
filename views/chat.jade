@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+
+  form(action='/chat', method='post')
+    label
+      input(type='text', name='message')
+    input(type='submit', name='submit', value="Send")
+  br
+  br
+  - for m in messages
+    div #{m["date"]}    #{m["message"]}
+
